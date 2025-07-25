@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junhykim <junhykim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/25 17:31:36 by junhykim          #+#    #+#             */
+/*   Updated: 2025/07/25 17:43:53 by junhykim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char *argv[])
@@ -18,8 +30,8 @@ int	main(int argc, char *argv[])
 			sa(&a, false);
 		else if (list_size(a) == 3)
 			three_sort(&a);
-		else if (list_size(a) == 4)
-			four_sort(&a);
+		//else if (list_size(a) == 4)
+		//	four_sort(&a);
 		else if (list_size(a) == 5)
 			five_sort(&a, &b);
 		else
@@ -46,7 +58,27 @@ void	stack_init(t_stack **a, char **argv, bool flag)
 		list_add_back(a, (int)nbr);
 	}
 	if (flag)
-		free_twodim(argv);
+		ft_freetwodim(argv);
+}
+
+void	ft_freetwodim(char **arr)
+{
+	int	i;
+
+	if (!arr)
+		return ;
+	i = -1;
+	while (arr[++i])
+		free(arr[i]);
+	free(arr);
+}
+
+void	mexit(char *msg, int flag)
+{
+	if (flag)
+		write(flag + 1, "Error\n", 6);
+	write(flag + 1, msg, ft_strlen(msg));
+	exit(flag);
 }
 
 int	right_in(char *str)
@@ -69,7 +101,7 @@ void	left_free(t_stack **a, char **argv, bool flag)
 {
 	free_stack(a);
 	if (flag)
-		free_twodim(argv);
+		ft_freetwodim(argv);
 	mexit("Error\n", ERROR);
 }
 
@@ -141,7 +173,7 @@ t_stack	*find_last_node(t_stack *a)
 long	ft_atol(const char *str)
 {
 	long	result;
-	int	sign;
+	int		sign;
 
 	sign = 1;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
@@ -438,8 +470,8 @@ void	set_price(t_stack *a, t_stack *b)
 	int	len_a;
 	int	len_b;
 
-	len_a = stack_len(a);
-	len_b = stack_len(b);
+	len_a = list_size(a);
+	len_b = list_size(b);
 	while (b)
 	{
 		b->push_price = b->current_position;
@@ -455,8 +487,8 @@ void	set_price(t_stack *a, t_stack *b)
 
 void	set_cheapest(t_stack *b)
 {
-	long			best_match_value;
 	t_stack	*best_match_node;
+	long	best_match_value;
 
 	if (NULL == b)
 		return ;
