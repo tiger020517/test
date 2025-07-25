@@ -57,6 +57,7 @@ void	ra(t_stack **a, bool flag);
 void	rb(t_stack **b, bool flag);
 void	rr(t_stack **a, t_stack **b, bool flag);
 void	three_sort(t_stack **a);
+t_stack	*find_highest(t_stack *stack);
 void	reverse_rotate(t_stack **stack);
 void	rra(t_stack **a, bool checker);
 void	rrb(t_stack **b, bool checker);

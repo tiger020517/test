@@ -301,13 +301,33 @@ void	three_sort(t_stack **a)
 {
 	t_stack	*highest_node;
 
-	highest_node = find_last_node(*a);
+	highest_node = find_highest(*a);
 	if (*a == highest_node)
 		ra(a, false);
 	else if ((*a)->next == highest_node)
 		rra(a, false);
 	if ((*a)->value > (*a)->next->value)
 		sa(a, false);
+}
+
+t_stack	*find_highest(t_stack *stack)
+{
+	int				highest;
+	t_stack	*highest_node;
+
+	if (!stack)
+		return (NULL);
+	highest = INT_MIN;
+	while (stack)
+	{
+		if (stack->value > highest)
+		{
+			highest = stack->value;
+			highest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (highest_node);
 }
 
 void	reverse_rotate(t_stack **stack)
