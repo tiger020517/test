@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: utente <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: junhykim <junhykim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/08 12:14:59 by utente            #+#    #+#              #
-#    Updated: 2023/04/08 12:36:39 by utente           ###   ########.fr        #
+#    Updated: 2025/07/25 18:26:11 by junhykim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(ARCHIVE) : $(OBJS)
 	$(MAKE_LIB) $(ARCHIVE) $^
 
 %.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) -c $< -o $@ -g
 
 bonus : 
 	cd ../checker && make
