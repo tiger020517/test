@@ -57,6 +57,10 @@ void	ra(t_stack **a, bool flag);
 void	rb(t_stack **b, bool flag);
 void	rr(t_stack **a, t_stack **b, bool flag);
 void	three_sort(t_stack **a);
+void	reverse_rotate(t_stack **stack);
+void	rra(t_stack **a, bool checker);
+void	rrb(t_stack **b, bool checker);
+void	rrr(t_stack **a, t_stack **b, bool checker);
 void	push(t_stack **dest, t_stack **src);
 void	pa(t_stack **a, t_stack **b, bool flag);
 void	pb(t_stack **b, t_stack **a, bool flag);
@@ -68,6 +72,12 @@ void	set_target_node(t_stack *a, t_stack *b);
 t_stack	*find_smallest(t_stack *stack);
 void	set_price(t_stack *a, t_stack *b);
 void	set_cheapest(t_stack *b);
+void	finish_rotation(t_stack **stack,
+		t_stack *top_node, char stack_name);
 void	move_nodes(t_stack **a, t_stack **b);
-
+t_stack	*return_cheapest(t_stack *stack);
+void	rotate_both(t_stack **a, t_stack **b,
+		t_stack *cheapest_node);
+void	reverse_rotate_both(t_stack **a, 
+		t_stack **b, t_stack *cheapest_node);
 #endif

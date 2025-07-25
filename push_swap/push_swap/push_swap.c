@@ -310,6 +310,44 @@ void	three_sort(t_stack **a)
 		sa(a, false);
 }
 
+void	reverse_rotate(t_stack **stack)
+{
+	t_stack	*last;
+	int				len;
+
+	len = list_size(*stack);
+if (!stack || !*stack || len == 1)
+		return ;
+	last = find_last_node(*stack);
+	last->prev->next = NULL;
+	last->next = *stack;
+	last->prev = NULL;
+	*stack = last;
+	last->next->prev = last;
+}
+
+void	rra(t_stack **a, bool checker)
+{
+	reverse_rotate(a);
+	if (!checker)
+		write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack **b, bool checker)
+{
+	reverse_rotate(b);
+	if (!checker)
+		write(1, "rrb\n", 4);
+}
+
+void	rrr(t_stack **a, t_stack **b, bool checker)
+{
+	reverse_rotate(a);
+	reverse_rotate(b);
+	if (!checker)
+		write(1, "rrr\n", 4);
+}
+
 void	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*node_to_push;
@@ -505,6 +543,28 @@ void	set_cheapest(t_stack *b)
 	best_match_node->cheapest = true;
 }
 
+void	finish_rotation(t_stack **stack,
+		t_stack *top_node, char stack_name)
+{
+	while (*stack != top_node)
+	{
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack, false);
+			else
+				rra(stack, false);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack, false);
+			else
+				rrb(stack, false);
+		}
+	}
+}
+
 void	move_nodes(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest_node;
@@ -519,4 +579,37 @@ void	move_nodes(t_stack **a, t_stack **b)
 	finish_rotation(b, cheapest_node, 'b');
 	finish_rotation(a, cheapest_node->target, 'a');
 	pa(a, b, false);
+}
+
+t_stack	*return_cheapest(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
+
+void	rotate_both(t_stack **a,
+			t_stack **b, t_stack *cheapest_node)
+{
+	while (*a != cheapest_node->target
+		&& *b != cheapest_node)
+		rr(a, b, false);
+	set_current_position(*a);
+	set_current_position(*b);
+}
+
+void	reverse_rotate_both(t_stack **a,
+		t_stack **b, t_stack *cheapest_node)
+{
+	while (*a != cheapest_node->target
+		&& *b != cheapest_node)
+		rrr(a, b, false);
+	set_current_position(*a);
+	set_current_position(*b);
 }
