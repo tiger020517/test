@@ -6,24 +6,11 @@
 /*   By: junhykim <junhykim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:34:13 by junhykim          #+#    #+#             */
-/*   Updated: 2025/07/25 20:38:12 by junhykim         ###   ########.fr       */
+/*   Updated: 2025/07/25 21:40:46 by junhykim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-bool	stack_sorted(t_stack *a)
-{
-	if (!a)
-		return (SUCCESS);
-	while (a->next)
-	{
-		if (a->value > a->next->value)
-			return (ERROR);
-		a = a->next;
-	}
-	return (SUCCESS);
-}
 
 int	list_size(t_stack *a)
 {
@@ -93,4 +80,24 @@ t_stack	*find_highest(t_stack *stack)
 		stack = stack->next;
 	}
 	return (highest_node);
+}
+
+t_stack	*find_smallest(t_stack *stack)
+{
+	long	smallest;
+	t_stack	*smallest_node;
+
+	if (!stack)
+		return (NULL);
+	smallest = LONG_MAX;
+	while (stack)
+	{
+		if (stack->value < smallest)
+		{
+			smallest = stack->value;
+			smallest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (smallest_node);
 }

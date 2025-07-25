@@ -6,7 +6,7 @@
 /*   By: junhykim <junhykim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:31:52 by junhykim          #+#    #+#             */
-/*   Updated: 2025/07/25 20:33:17 by junhykim         ###   ########.fr       */
+/*   Updated: 2025/07/25 21:40:30 by junhykim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,19 @@ int	dup_in(t_stack *a, int nbr)
 	while (a)
 	{
 		if (a->value == nbr)
+			return (ERROR);
+		a = a->next;
+	}
+	return (SUCCESS);
+}
+
+bool	stack_sorted(t_stack *a)
+{
+	if (!a)
+		return (SUCCESS);
+	while (a->next)
+	{
+		if (a->value > a->next->value)
 			return (ERROR);
 		a = a->next;
 	}

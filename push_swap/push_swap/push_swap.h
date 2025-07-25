@@ -6,7 +6,7 @@
 /*   By: junhykim <junhykim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:32:51 by junhykim          #+#    #+#             */
-/*   Updated: 2025/07/25 17:42:59 by junhykim         ###   ########.fr       */
+/*   Updated: 2025/07/25 21:14:10 by junhykim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ t_stack	*find_smallest(t_stack *stack);
 void	set_price(t_stack *a, t_stack *b);
 void	set_cheapest(t_stack *b);
 void	finish_rotation(t_stack **stack,
-		t_stack *top_node, char stack_name);
+			t_stack *top_node, char stack_name);
 void	move_nodes(t_stack **a, t_stack **b);
 t_stack	*return_cheapest(t_stack *stack);
 void	rotate_both(t_stack **a, t_stack **b,
-		t_stack *cheapest_node);
+			t_stack *cheapest_node);
 void	reverse_rotate_both(t_stack **a, 
-		t_stack **b, t_stack *cheapest_node);
+			t_stack **b, t_stack *cheapest_node);
 #endif
